@@ -1,6 +1,7 @@
 package gameshop.toy.service;
 
 import gameshop.toy.controller.dto.PostResponseDto;
+import gameshop.toy.controller.dto.PostsListResponseDto;
 import gameshop.toy.controller.dto.PostsSaveRequestDto;
 import gameshop.toy.controller.dto.PostsUpdateDto;
 import gameshop.toy.domain.posts.Posts;
@@ -8,6 +9,9 @@ import gameshop.toy.domain.posts.PostsRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -32,5 +36,17 @@ public class PostsService {
         posts.update(requestDto.getTitle(), requestDto.getContent());
 
         return id;
+    }
+
+    @Transactional(readOnly = true)
+    public List<PostsListResponseDto> findAllDesc() {
+        return postsRepository.findAllDesc().stream().map(PostsListResponseDto::new).collect(Collectors.toList());
+
+    }
+
+    @Transactional
+    public void delete(Long id){
+        Posts posts = postsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. ID = " + id));
+        postsRepository.delete(posts);
     }
 }
