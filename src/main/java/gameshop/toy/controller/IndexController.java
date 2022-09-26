@@ -1,5 +1,7 @@
 package gameshop.toy.controller;
 
+import gameshop.toy.config.auth.LoginUser;
+import gameshop.toy.config.auth.dto.SessionUser;
 import gameshop.toy.controller.dto.PostResponseDto;
 import gameshop.toy.service.PostsService;
 import lombok.RequiredArgsConstructor;
@@ -9,15 +11,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import javax.servlet.http.HttpSession;
+
 @RequiredArgsConstructor
 @Controller
 public class IndexController {
 
     private final PostsService postsService;
+    private final HttpSession httpSession;
 
     @GetMapping("/")
-    public String index(Model model){
+    public String index(Model model, @LoginUser SessionUser user){
         model.addAttribute("posts", postsService.findAllDesc());
+
+        if (user != null) {
+            model.addAttribute("userName", user.getName());
+        }
+
         return "index";
     }
 
