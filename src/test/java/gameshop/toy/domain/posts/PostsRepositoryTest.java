@@ -12,6 +12,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
+@Transactional
 @SpringBootTest
 public class PostsRepositoryTest {
 
@@ -45,7 +46,7 @@ public class PostsRepositoryTest {
     @Test
     public void BaseTimeEntity_등록(){
         //given
-        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime now = LocalDateTime.of(2022,9,27,10,59);
         postsRepository.save(Posts.builder()
                 .title("title")
                 .content("content")
