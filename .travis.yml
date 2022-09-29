@@ -7,7 +7,7 @@ branches:
   only:
     - master
 
-# gradlew 권한 추가
+# gradlew 권한 추가.
 before_install:
   - chmod +x gradlew
 
