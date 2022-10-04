@@ -44,4 +44,9 @@ public class IndexController {
         return "post-update";
     }
 
+    @GetMapping("/sign-up")
+    public String login(){
+        return "sign-up";
+    }
+
 }
