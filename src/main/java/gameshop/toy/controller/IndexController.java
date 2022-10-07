@@ -32,21 +32,43 @@ public class IndexController {
     }
 
     @GetMapping("/posts/save")
-    public String postsSave() {
+    public String postsSave(Model model, @LoginUser SessionUser user) {
+        if (user != null) {
+            model.addAttribute("userName", user.getName());
+        }
+
         return "posts-save";
     }
     
-    @GetMapping("/posts/update/{id}")
-    public String postsUpdate(@PathVariable Long id, Model model) {
+    @GetMapping("/posts/update/{id}") //커뮤니티 디테일로 수정
+    public String postsUpdate(@PathVariable Long id, Model model, @LoginUser SessionUser user) {
         PostResponseDto dto = postsService.findById(id);
         model.addAttribute("post", dto);
+        if (user != null) {
+            model.addAttribute("userName", user.getName());
+        }
 
         return "post-update";
     }
 
     @GetMapping("/sign-up")
-    public String login(){
+    public String login(Model model, @LoginUser SessionUser user){
+        if (user != null) {
+            model.addAttribute("userName", user.getName());
+        }
+
         return "sign-up";
+    }
+
+    @GetMapping("/posts/update2/{id}") //커뮤니티 디테일로 수정
+    public String postsUpdate2(@PathVariable Long id, Model model, @LoginUser SessionUser user) {
+        PostResponseDto dto = postsService.findById(id);
+        model.addAttribute("post", dto);
+        if (user != null) {
+            model.addAttribute("userName", user.getName());
+        }
+
+        return "post-update2";
     }
 
 }

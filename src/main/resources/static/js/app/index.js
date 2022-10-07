@@ -55,6 +55,7 @@ var main = {
         });
     },
     delete : function () {
+
         var id = $('#id').val();
 
         $.ajax({
@@ -68,7 +69,7 @@ var main = {
         }).fail(function (error) {
             alert(JSON.stringify(error));
         });
-    }
+    },
 
 };
 
