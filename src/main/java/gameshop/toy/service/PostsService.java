@@ -6,6 +6,8 @@ import gameshop.toy.controller.dto.PostsSaveRequestDto;
 import gameshop.toy.controller.dto.PostsUpdateDto;
 import gameshop.toy.domain.posts.Posts;
 import gameshop.toy.domain.posts.PostsRepository;
+import gameshop.toy.domain.user.User;
+import gameshop.toy.domain.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +20,7 @@ import java.util.stream.Collectors;
 public class PostsService {
 
     private final PostsRepository postsRepository;
+    private final UserRepository userRepository;
 
     @Transactional
     public PostResponseDto findById(Long id) {
@@ -27,7 +30,9 @@ public class PostsService {
     }
 
     @Transactional
-    public Long save(PostsSaveRequestDto postsSaveRequestDto) {
+    public Long save(String email, PostsSaveRequestDto postsSaveRequestDto) {
+        User user = userRepository.findByEmail(email).orElseThrow(() -> new IllegalArgumentException("해당 이메일이 없습니다. email=" + email));
+        postsSaveRequestDto.setUser(user);
         return postsRepository.save(postsSaveRequestDto.toEntity()).getId();
     }
     @Transactional

@@ -1,5 +1,7 @@
 package gameshop.toy.controller;
 
+import gameshop.toy.config.auth.LoginUser;
+import gameshop.toy.config.auth.dto.SessionUser;
 import gameshop.toy.controller.dto.PostResponseDto;
 import gameshop.toy.controller.dto.PostsSaveRequestDto;
 import gameshop.toy.controller.dto.PostsUpdateDto;
@@ -13,8 +15,8 @@ public class PostsApiController {
     private final PostsService postsService;
 
     @PostMapping("/api/v1/posts")
-    public Long save(@RequestBody PostsSaveRequestDto postsSaveRequestDto) {
-        return postsService.save(postsSaveRequestDto);
+    public Long save(@RequestBody PostsSaveRequestDto postsSaveRequestDto, @LoginUser SessionUser sessionUser) {
+        return postsService.save(sessionUser.getEmail(), postsSaveRequestDto);
     }
 
     @PutMapping("/api/v1/posts/{id}")

@@ -7,7 +7,7 @@
 <main>
     <h1>스프링 부트 웹 서비스 ver.3</h1>
     <div class="text-end my-3">
-        <a href="/posts/save" role="button" class="btn btn-outline-secondary btn-sm">글 등록</a>
+        <a href="/posts/save" role="button" class="btn btn-outline-primary btn-sm">글 등록</a>
     </div>
     <!-- 목록 출력 영역 -->
     <table class="table table-horizontal table-bordered">
@@ -22,7 +22,7 @@
         <tbody id="tbody">
         <tr th:each="post : ${posts}">
             <td th:text="${post.id}">id</td>
-            <td><a th:href="@{/posts/update/{param}(param=${post.id})}">[[${post.title}]]</a></td>
+            <td><a th:href="@{/posts/read/{param}(param=${post.id})}">[[${post.title}]]</a></td>
             <td th:text="${post.author}">author</td>
             <td th:text="${post.modifiedDate}">modifiedDate</td>
         </tr>

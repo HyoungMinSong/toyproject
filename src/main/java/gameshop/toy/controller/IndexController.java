@@ -40,15 +40,19 @@ public class IndexController {
         return "posts-save";
     }
     
-    @GetMapping("/posts/update/{id}") //커뮤니티 디테일로 수정
+    @GetMapping("/posts/read/{id}") //커뮤니티 디테일로 수정
     public String postsUpdate(@PathVariable Long id, Model model, @LoginUser SessionUser user) {
         PostResponseDto dto = postsService.findById(id);
         model.addAttribute("post", dto);
         if (user != null) {
             model.addAttribute("userName", user.getName());
+
+            if (dto.getUser().getId().equals(user.getId())){
+                model.addAttribute("writer",true);
+            }
         }
 
-        return "post-update";
+        return "post-read";
     }
 
     @GetMapping("/sign-up")
@@ -60,7 +64,7 @@ public class IndexController {
         return "sign-up";
     }
 
-    @GetMapping("/posts/update2/{id}") //커뮤니티 디테일로 수정
+    @GetMapping("/posts/update/{id}") //커뮤니티 디테일로 수정
     public String postsUpdate2(@PathVariable Long id, Model model, @LoginUser SessionUser user) {
         PostResponseDto dto = postsService.findById(id);
         model.addAttribute("post", dto);
@@ -68,7 +72,7 @@ public class IndexController {
             model.addAttribute("userName", user.getName());
         }
 
-        return "post-update2";
+        return "post-update";
     }
 
 }

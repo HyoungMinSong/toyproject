@@ -1,6 +1,7 @@
 package gameshop.toy.domain.posts;
 
 import gameshop.toy.domain.BaseTimeEntity;
+import gameshop.toy.domain.user.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,6 +15,7 @@ public class Posts extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "post_id")
     private Long id;
 
     @Column(length = 500, nullable = false)
@@ -24,11 +26,16 @@ public class Posts extends BaseTimeEntity {
 
     private String author;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+
     @Builder
-    public Posts(String title, String content, String author) {
+    public Posts(String title, String content, String author, User user) {
         this.title = title;
         this.content = content;
         this.author = author;
+        this.user = user;
     }
 
     public void update(String title, String content) {
