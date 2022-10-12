@@ -52,6 +52,7 @@ public class IndexController {
         model.addAttribute("post", dto);
         if (user != null) {
             model.addAttribute("userName", user.getName());
+            model.addAttribute("userId", user.getId());
 
             if (dto.getUser().getId().equals(user.getId())){
                 model.addAttribute("writer",true);
