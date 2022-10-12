@@ -12,6 +12,10 @@ var main = {
         $('#btn-delete').on('click', function () {
             _this.delete();
         });
+
+        $('#btn-comment-save').on('click', function () {
+            _this.commentSave();
+        });
     },
     save : function () {
         var data = {
@@ -70,6 +74,28 @@ var main = {
             alert(JSON.stringify(error));
         });
     },
+    commentSave : function () {
+        var data = $('#comment').val()
+        var id = $('#postsId').val()
+
+        if (!data || data.trim() === ""){
+            alert("공백 또는 입력하지 않는 부분이 있습니다.");
+            return false;
+        } else {
+            $.ajax({
+                type: 'POST',
+                url: '/api/posts/' + id + '/comments',
+                dataType: 'json',
+                contentType:'application/json; charset=utf-8',
+                data: JSON.stringify(data)
+            }).done(function() {
+                alert('댓글이 등록되었습니다.');
+                window.location.reload();
+            }).fail(function (error) {
+                alert(JSON.stringify(error));
+            });
+        }
+    }
 
 };
 

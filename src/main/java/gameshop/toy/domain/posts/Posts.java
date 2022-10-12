@@ -1,12 +1,15 @@
 package gameshop.toy.domain.posts;
 
 import gameshop.toy.domain.BaseTimeEntity;
+import gameshop.toy.domain.comments.Comments;
 import gameshop.toy.domain.user.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor
@@ -29,6 +32,10 @@ public class Posts extends BaseTimeEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
+
+    @OneToMany(mappedBy = "posts", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @OrderBy("id asc")
+    private List<Comments> comments = new ArrayList<>();
 
     @Builder
     public Posts(String title, String content, String author, User user) {

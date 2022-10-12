@@ -20,7 +20,7 @@ public class SecurityConfig {
                 .csrf().disable().headers().frameOptions().disable()
             .and()
                 .authorizeRequests()
-                .antMatchers("/", "/css/**", "/images/**", "/js/**", "/h2-console/**","/profile","/sign-up").permitAll()
+                .antMatchers("/", "/css/**", "/images/**", "/js/**", "/h2-console/**","/profile","/sign-up","/posts/read/**").permitAll()
                 .antMatchers("/api/v1/**").hasRole(Role.USER.name())
                 .anyRequest().authenticated()
             .and()
