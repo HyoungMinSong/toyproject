@@ -21,6 +21,6 @@ class IndexControllerTest {
     void 메인페이지_로딩() {
         String body = restTemplate.getForObject("/", String.class);
 
-        Assertions.assertThat(body).contains("스프링 부트 웹 서비스");
+        Assertions.assertThat(body).contains("무중단 배포 게시판");
     }
 }
