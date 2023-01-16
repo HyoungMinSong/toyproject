@@ -1,8 +1,35 @@
 # :pencil: 무중단 배포 게시판  
 >무중단 배포 게시판  
->http://ec2-3-38-75-158.ap-northeast-2.compute.amazonaws.com
+>~~http://ec2-3-38-75-158.ap-northeast-2.compute.amazonaws.com~~ <br>
+Travis Ci 무료기간 만료와 AWS EC2의 하드웨어 문제로 인한 인스턴스 종료로 사진으로 대체합니다.
+<details>
+<summary><b>프로젝트 사진</b></summary>
+<div markdown="1">
+메인 페이지
 
-</br>
+![2](./img/2.png)
+게시글
+
+![3](./img/3.png)
+로그인
+
+![4](./img/4.png)
+게시글 등록
+
+![5](./img/5.png)
+댓글 등록
+
+![6](./img/6.png)
+댓글 수정
+
+![7](./img/7.png)
+게시글 수정
+
+![8](./img/8.png)
+
+
+</div>
+</details>
 
 ## 1. 개요
 JPA와 Spring Security + Oauth2를 사용한 간단한 게시판 구현 및 AWS 무중단 자동화 배포 구현을 통하여 동작 원리 및 내부 구조 파악하기 위한 프로젝트.
@@ -10,7 +37,7 @@ JPA와 Spring Security + Oauth2를 사용한 간단한 게시판 구현 및 AWS 
 </br>
 
 ## 2. 제작 기간 & 참여 인원
-- 2022년 09월 07일 ~ 현재
+- 2022년 09월 07일 ~ 2022년 10월 18일
 - 개인 프로젝트
 
 </br>
